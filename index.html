@@ -1,81 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Saudi Student Hub — free chapter-wise learning, videos, revision, quizzes and study tools.">
-  <title>Saudi Student Hub | Learn Your Way</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Saudi Student Hub: organised chapter lessons, embedded videos, notes, revision and practice.">
+<title>Saudi Student Hub | Learn. Revise. Succeed.</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="#home"><span class="brand-icon">S</span><span>Saudi Student Hub<small>LEARN · PRACTISE · GROW</small></span></a>
-  <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
-  <nav id="mainNav"><a href="#library">Learning library</a><a href="#games">Games</a><a href="#tools">Study tools</a><a href="#assistant">AI assistant</a></nav>
-  <div class="header-right"><button class="round-btn" id="themeToggle" aria-label="Toggle dark mode">◐</button><a class="header-cta" href="#library">Start learning <span>↗</span></a></div>
-</header>
-
+<header class="topbar"><a class="brand" href="#home"><span class="brandmark">S</span><span>Saudi Student Hub<small>LEARN · REVISE · SUCCEED</small></span></a><nav><a href="#library">Library</a><a href="#practice">Practice</a><a href="#tools">Student tools</a></nav><div class="top-actions"><button id="themeToggle" class="icon-btn" aria-label="Toggle theme">◐</button><a class="primary-link" href="#library">Start learning ↗</a></div></header>
 <main id="home">
-  <section class="hero">
-    <div class="hero-content">
-      <span class="kicker"><i></i> YOUR FREE LEARNING COMPANION</span>
-      <h1>Learn better.<br><em>Every single day.</em></h1>
-      <p>Find chapter lessons, Arabic and English videos, quick revision, exam practice and fun learning games — all in one student-friendly place.</p>
-      <div class="hero-buttons"><a class="btn btn-primary" href="#library">Explore learning library <span>→</span></a><a class="btn btn-quiet" href="#games">Try a learning game</a></div>
-      <div class="hero-proof"><span>✓ Free to use</span><span>✓ Classes 6–12</span><span>✓ English + Arabic</span></div>
-    </div>
-    <div class="hero-visual">
-      <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div>
-      <div class="hero-board">
-        <div class="board-top"><span class="board-logo">✦</span><span>YOUR LEARNING SPACE</span><span class="live-dot"></span></div>
-        <div class="board-title">Today's learning</div><div class="board-sub">One chapter at a time.</div>
-        <div class="board-progress"><span>Chapter progress</span><b>Keep going!</b></div><div class="progress-bar"><i></i></div>
-        <div class="board-pills"><span>▶ Video lesson</span><span>✎ Quick notes</span><span>✓ Practice quiz</span></div>
-      </div>
-      <div class="float-chip chip-top">🌱 Learn at your pace</div><div class="float-chip chip-bottom">🏆 Earn learning points</div>
-    </div>
-  </section>
-
-  <section class="quick-benefits"><div><b>01</b><strong>Chapter by chapter</strong><small>Keep every lesson organised</small></div><div><b>02</b><strong>Two video languages</strong><small>Choose English or Arabic</small></div><div><b>03</b><strong>Learn by playing</strong><small>Practise with interactive games</small></div></section>
-
-  <section class="section library-section" id="library">
-    <div class="section-heading"><div><span class="kicker">THE LEARNING LIBRARY</span><h2>Find your next lesson.</h2><p>Choose your curriculum, class and subject to explore learning resources.</p></div><span class="section-index">01 / LEARN</span></div>
-    <div class="library-controls">
-      <label>Curriculum<select id="curriculum"><option value="CBSE">CBSE</option><option value="Saudi">Saudi curriculum</option></select></label>
-      <label>Class<select id="classSelect"><option value="6">Class 6</option><option value="7">Class 7</option><option value="8">Class 8</option><option value="9">Class 9</option><option value="10">Class 10</option><option value="11" selected>Class 11</option><option value="12">Class 12</option></select></label>
-      <label>Subject<select id="subjectSelect"><option>Biology</option><option>Chemistry</option><option>Physics</option><option>Mathematics</option><option>English</option><option>Arabic</option></select></label>
-      <label>Video language<select id="videoLanguage"><option value="English">English</option><option value="Arabic">العربية (Arabic)</option></select></label>
-    </div>
-    <div class="library-layout">
-      <aside class="chapter-sidebar"><div class="sidebar-title"><span>CHAPTERS</span><span id="chapterCount">01</span></div><div id="chapterList" class="chapter-list"></div></aside>
-      <div class="chapter-content" id="chapterContent" aria-live="polite"></div>
-    </div>
-    <p class="library-disclaimer">Syllabus coverage is being added progressively. Always compare resources with your school's current textbook and syllabus. YouTube search results are suggestions, not endorsements or verified syllabus matches.</p>
-  </section>
-
-  <section class="section games-section" id="games">
-    <div class="section-heading"><div><span class="kicker">LEARN THROUGH PLAY</span><h2>Make practice more fun.</h2><p>Short activities to help you remember what you learn.</p></div><span class="section-index">02 / PLAY</span></div>
-    <div class="games-grid">
-      <article class="game-card game-purple"><div class="game-symbol">⚡</div><span class="game-label">QUICK QUIZ</span><h3>Quiz Sprint</h3><p>Answer questions before the timer runs out.</p><button class="text-action" data-game="quiz">Play quiz <b>→</b></button></article>
-      <article class="game-card game-green"><div class="game-symbol">▣</div><span class="game-label">MEMORY GAME</span><h3>Match It</h3><p>Match a science term with its meaning.</p><button class="text-action" data-game="match">Play matching <b>→</b></button></article>
-      <article class="game-card game-orange"><div class="game-symbol">Aa</div><span class="game-label">VOCABULARY</span><h3>Word Builder</h3><p>Practise useful English and Arabic words.</p><button class="text-action" data-game="word">Play word game <b>→</b></button></article>
-    </div>
-    <div class="game-stage" id="gameStage"><div><span class="kicker">READY WHEN YOU ARE</span><h3>Choose a game to begin.</h3><p>Your scores are saved in this browser.</p></div></div>
-  </section>
-
-  <section class="section tools-section" id="tools">
-    <div class="section-heading"><div><span class="kicker">STUDENT TOOLKIT</span><h2>Useful tools for school.</h2><p>Simple everyday tools to help you stay organised.</p></div><span class="section-index">03 / TOOLS</span></div>
-    <div class="tools-grid">
-      <article class="tool-box"><div class="tool-icon purple">％</div><h3>Attendance calculator</h3><p>Calculate your attendance percentage.</p><div class="inline-fields"><input id="attended" type="number" min="0" placeholder="Attended"><input id="totalClasses" type="number" min="1" placeholder="Total"></div><button class="btn btn-primary small-btn" id="attendanceBtn">Calculate</button><output id="attendanceResult">Your result appears here.</output></article>
-      <article class="tool-box"><div class="tool-icon green">✎</div><h3>Marks calculator</h3><p>Calculate your score percentage.</p><div class="inline-fields"><input id="scored" type="number" min="0" placeholder="Scored"><input id="maximum" type="number" min="1" placeholder="Total"></div><button class="btn btn-primary small-btn" id="marksBtn">Calculate</button><output id="marksResult">Your result appears here.</output></article>
-      <article class="tool-box"><div class="tool-icon orange">☷</div><h3>Today's study list</h3><p>Add tasks and tick them off as you finish.</p><form id="taskForm" class="task-form"><input id="taskInput" maxlength="90" placeholder="Add a study task…" required><button class="btn btn-primary small-btn">Add</button></form><ul id="taskList" class="task-list"></ul></article>
-      <article class="tool-box"><div class="tool-icon blue">◷</div><h3>Focus timer</h3><p>Try 25 minutes of focus and a 5-minute break.</p><div class="timer-readout" id="timerReadout">25:00</div><div class="timer-actions"><button class="btn btn-primary small-btn" id="timerStart">Start</button><button class="btn btn-quiet small-btn" id="timerReset">Reset</button><button class="btn btn-quiet small-btn" id="timerSwitch">Break</button></div></article>
-    </div>
-  </section>
-
-  <section class="assistant-section" id="assistant"><div><span class="kicker">COMING IN A LATER BUILD</span><h2>Your AI study partner.</h2><p>Ask questions about a chapter, request step-by-step explanations, create revision notes and generate practice questions. We'll connect the AI through a secure backend in a later step.</p><ul><li>Explain difficult topics in simple language</li><li>Help with chapter revision and practice</li><li>Support English and Arabic prompts</li></ul></div><div class="assistant-preview"><div class="assistant-head"><span>✦</span><div><b>Study Assistant</b><small>Preview · Not connected yet</small></div></div><div class="bubble">Hello! Choose a chapter and I'll help you understand it.</div><div class="bubble user-bubble">Explain photosynthesis in simple words.</div><div class="fake-input">AI chat will be enabled in a later step…</div><small class="privacy">Do not enter passwords or private personal information into AI tools.</small></div></section>
-</main>
-<footer><a class="brand" href="#home"><span class="brand-icon">S</span><span>Saudi Student Hub<small>LEARN · PRACTISE · GROW</small></span></a><p>A free learning project for students.</p><small>Student-entered data is stored in this browser. Clear browser data to remove it. Video links open YouTube; content and availability are controlled by their creators.</small><div class="footer-line">© <span id="year"></span> Saudi Student Hub · Always verify exam requirements with your school.</div></footer>
-<script src="script.js"></script>
-</body>
-</html>
+<section class="hero"><div class="hero-copy"><span class="eyebrow"><i></i> YOUR STUDY SPACE</span><h1>One place for<br><em>every lesson.</em></h1><p>Understand your chapters, watch lessons, revise for exams and test what you know — without jumping between search pages.</p><div class="hero-actions"><a class="btn primary" href="#library">Explore library <b>→</b></a><a class="btn secondary" href="#practice">Go to practice</a></div><div class="hero-meta"><span>✓ Free student resources</span><span>✓ English & Arabic support</span><span>✓ Classes 6–12 library structure</span></div></div><div class="hero-art"><div class="art-card"><div class="art-head"><span>✦ TODAY'S STUDY PLAN</span><span class="status">READY</span></div><div class="art-number">01 <small>/ 03</small></div><h3>Learn a little.<br>Improve every day.</h3><div class="art-progress"><span></span></div><div class="art-tags"><b>▶ Video</b><b>✎ Notes</b><b>✓ Quiz</b></div></div><div class="bubble bubble-one">📚 Chapter-wise</div><div class="bubble bubble-two">🌱 Your pace, your progress</div></div></section>
+<section class="stats"><div><b>07–12</b><span>Class levels</span></div><div><b>02</b><span>Curriculum pathways</span></div><div><b>02</b><span>Learning languages</span></div><div><b>100%</b><span>Student-focused</span></div></section>
+<section id="library" class="section"><div class="section-title"><div><span class="eyebrow">01 / LEARNING LIBRARY</span><h2>Choose what you're studying.</h2><p>Pick your curriculum, class, subject and chapter. This build includes a complete sample learning page for CBSE Class 11 Biology.</p></div></div>
+<div class="selector-panel"><label>Curriculum<select id="curriculum"><option>CBSE</option><option>Saudi curriculum</option></select></label><label>Class<select id="classSelect"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option selected>11</option><option>12</option></select></label><label>Subject<select id="subjectSelect"><option>Biology</option><option>Chemistry</option><option>Physics</option><option>Mathematics</option><option>English</option><option>Arabic</option></select></label><label>Language<select id="languageSelect"><option>English</option><option>Arabic</option></select></label></div>
+<div class="learning-layout"><aside class="chapter-panel"><div class="panel-heading"><b>CHAPTERS</b><span id="chapterCount">08</span></div><div id="chapterList"></div></aside><article id="chapterArea" class="chapter-area" aria-live="polite"></article></div>
+<div class="scope-note"><b>Content accuracy:</b> The sample chapter is mapped to the NCERT/CBSE Class 11 Biology chapter “Photosynthesis in Higher Plants”. Other class and Saudi curriculum chapter lists will be added after checking the relevant official syllabus; they are not being presented as verified yet.</div>
+</section>
+<section id="practice" class="section practice-section"><div class="section-title"><div><span class="eyebrow">02 / ACTIVE RECALL</span><h2>Make revision count.</h2><p>Use the chapter's question bank and quizzes to check your understanding.</p></div></div><div class="practice-grid"><div class="practice-card"><span class="card-icon">✦</span><h3>Daily challenge</h3><p>Five quick questions from the sample Biology chapter.</p><button class="text-btn" id="dailyQuiz">Start challenge →</button></div><div class="practice-card"><span class="card-icon">▤</span><h3>Flash revision</h3><p>Short key facts to review before class or an exam.</p><a class="text-btn" href="#library">Open chapter revision →</a></div><div class="practice-card"><span class="card-icon">◷</span><h3>Focus session</h3><p>Study in focused blocks and take short breaks.</p><a class="text-btn" href="#tools">Use focus timer →</a></div></div><div id="quizArea" class="quiz-area"><div><span class="eyebrow">READY TO PRACTISE?</span><h3>Your next step is one question.</h3><p>Choose “Start challenge” to begin the interactive quiz.</p></div></div></section>
+<section id="tools" class="section tools-section"><div class="section-title"><div><span class="eyebrow">03 / STUDENT TOOLKIT</span><h2>Keep school organised.</h2><p>Useful tools that run in your browser.</p></div></div><div class="tools-grid"><div class="tool-card"><span class="tool-symbol">％</span><h3>Attendance calculator</h3><p>Find your attendance percentage.</p><div class="two-inputs"><input id="attended" type="number" min="0" placeholder="Classes attended"><input id="total" type="number" min="1" placeholder="Total classes"></div><button class="btn primary small" id="attendanceBtn">Calculate</button><output id="attendanceResult"></output></div><div class="tool-card"><span class="tool-symbol">✓</span><h3>Marks calculator</h3><p>Calculate your test percentage.</p><div class="two-inputs"><input id="marks" type="number" min="0" placeholder="Marks scored"><input id="outOf" type="number" min="1" placeholder="Out of"></div><button class="btn primary small" id="marksBtn">Calculate</button><output id="marksResult"></output></div><div class="tool-card"><span class="tool-symbol">☷</span><h3>Study task list</h3><p>Add tasks and tick them off.</p><form id="taskForm" class="task-form"><input id="taskInput" placeholder="e.g. Revise Biology" maxlength="80" required><button class="btn primary small">Add</button></form><ul id="taskList"></ul></div><div class="tool-card"><span class="tool-symbol">◷</span><h3>Focus timer</h3><p>25 minutes focus, then take a break.</p><div id="timer">25:00</div><div class="timer-buttons"><button id="timerStart" class="btn primary small">Start</button><button id="timerReset" class="btn secondary small">Reset</button></div></div></div></section>
+<section class="assistant"><div><span class="eyebrow">COMING LATER</span><h2>Your AI study partner.</h2><p>Ask for simpler explanations, chapter summaries, practice MCQs and English or Arabic support. AI will be connected through a secure backend in a later release — no API key will be exposed in this public website.</p></div><div class="chat-preview"><div class="chat-title">✦ Study Assistant <small>Preview · Not connected</small></div><p class="chat-bubble">Can you explain the light reaction in simple words?</p><p class="chat-bubble reply">The light reaction converts light energy into chemical energy stored in ATP and NADPH.</p></div></section>
+</main><footer><a class="brand" href="#home"><span class="brandmark">S</span><span>Saudi Student Hub<small>LEARN · REVISE · SUCCEED</small></span></a><p>Built to make learning more organised and accessible.</p><small>Videos are embedded from their publishers. Their availability and playback rules are controlled by the providers. Student tools save data in this browser only.</small><div class="footer-bottom">© <span id="year"></span> Saudi Student Hub · Check your school's current syllabus before exams.</div></footer>
+<script src="script.js"></script></body></html>
