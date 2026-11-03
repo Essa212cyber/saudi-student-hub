@@ -84,3 +84,25 @@ button,a,select,input{max-width:100%}
 @media(max-width:900px){.hero{padding-left:5vw;padding-right:5vw}.learning-layout{grid-template-columns:1fr}.chapter-panel{padding:16px}#chapterList{display:flex;overflow-x:auto;gap:7px;padding-bottom:5px}.chapter-button{white-space:nowrap;flex:0 0 auto}.tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.topbar{height:auto;min-height:68px;padding:10px 16px}.brand{font-size:15px}.brandmark{width:36px;height:36px}.hero{padding:48px 22px 38px}.hero h1{font-size:clamp(43px,11vw,58px);letter-spacing:-1.8px}.hero-copy>p{font-size:16px}.hero-meta{font-size:12px}.stats{padding:20px 16px}.stats b{font-size:23px}.stats span{font-size:12px}.section{padding:52px 18px}.section-title h2{font-size:30px}.section-title p{font-size:14px}.selector-panel{grid-template-columns:repeat(2,minmax(0,1fr));padding:16px;gap:12px}.selector-panel label{font-size:12px}.selector-panel select{font-size:14px;padding:12px}.chapter-area{padding:19px}.chapter-top{flex-wrap:wrap}.chapter-top h2{font-size:24px}.tabs{gap:7px}.tab{font-size:12px;padding:10px}.video-grid,.notes-grid{grid-template-columns:1fr}.practice-grid{grid-template-columns:1fr}.tools-grid{grid-template-columns:1fr 1fr}.tool-card{padding:17px}.two-inputs{grid-template-columns:1fr}.assistant{grid-template-columns:1fr;padding:43px 20px}.assistant h2{font-size:30px}}
 @media(max-width:390px){.tools-grid,.selector-panel{grid-template-columns:1fr}.hero h1{font-size:43px}.art-tags{flex-wrap:wrap}.chapter-area{padding:15px}}
+
+/* Expanded chapter question bank */
+.question-bank-head{display:flex;justify-content:space-between;align-items:center;margin:20px 0 12px}
+.question-bank-head h3{font:800 19px Manrope;margin:0 0 4px;color:var(--ink)}
+.question-bank-head p{font-size:12px;color:var(--muted);margin:0}
+.question-filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+.q-filter{border:1px solid var(--line);background:#f5f7fb;color:#52627a;padding:9px 13px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer}
+.q-filter.active{background:var(--navy);border-color:var(--navy);color:white}
+.question-meta{font-size:9px;letter-spacing:1px;font-weight:900;color:var(--blue);margin-bottom:6px}
+.chem-question h4{font-size:14px;line-height:1.6}
+.chem-question .answer{font-size:13px;line-height:1.65;white-space:normal}
+.dark .q-filter{background:#202e43;color:#c4d0e2;border-color:var(--line)}
+.dark .q-filter.active{background:#3867df;color:white}
+@media(max-width:650px){.question-bank-head h3{font-size:17px}.question-filters{gap:6px}.q-filter{padding:8px 10px;font-size:10px}}
+
+/* Easy-definition cards and expanded chapter learning */
+.note small{display:block;margin-top:10px;color:var(--muted);font-size:.88rem;line-height:1.55}
+.note p{line-height:1.7}
+.question-meta{letter-spacing:.06em}
+.question h4{line-height:1.6}
+.revision-banner p{line-height:1.7}
+.tabs{flex-wrap:wrap;row-gap:8px}
