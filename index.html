@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Saudi Student Hub — free study tools, planners and learning support for students.">
+  <title>Saudi Student Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">S</span><span>Saudi Student Hub</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#tools">Study tools</a>
+      <a href="#planner">Planner</a>
+      <a href="#assistant">AI assistant</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="themeToggle" aria-label="Toggle dark mode">◐</button>
+      <button class="menu-button" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">YOUR FREE STUDY SPACE</span>
+        <h1>Study smarter.<br><span>Move forward.</span></h1>
+        <p>Simple tools to organise your schoolwork, track your progress and make learning feel more manageable.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#tools">Explore study tools <span>→</span></a>
+          <a class="text-link" href="#assistant">Meet the study assistant</a>
+        </div>
+        <div class="hero-note"><span class="pulse"></span> Free student tools · No account needed</div>
+      </div>
+      <div class="hero-art" aria-label="Study dashboard illustration">
+        <div class="art-glow"></div>
+        <div class="study-card card-main">
+          <div class="card-top"><span class="mini-icon">✦</span><span>YOUR STUDY SPACE</span><span class="online-dot"></span></div>
+          <div class="art-title">Small steps add up.</div>
+          <div class="art-subtitle">Keep your goals in sight.</div>
+          <div class="progress-label"><span>Weekly focus</span><b>On your way</b></div>
+          <div class="progress-track"><i></i></div>
+          <div class="mini-grid"><div><strong>Plan</strong><small>Organise your week</small></div><div><strong>Learn</strong><small>Understand concepts</small></div></div>
+        </div>
+        <div class="floating-note note-one">✎ &nbsp; Make a study plan</div>
+        <div class="floating-note note-two">✓ &nbsp; One task at a time</div>
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+      </div>
+    </section>
+
+    <section class="quick-strip" aria-label="Website benefits">
+      <div><span>01</span><b>Useful tools</b><small>For everyday school life</small></div>
+      <div><span>02</span><b>Your own pace</b><small>Build habits that work</small></div>
+      <div><span>03</span><b>Easy to use</b><small>Designed for students</small></div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="section-heading">
+        <div><span class="eyebrow">STUDENT TOOLKIT</span><h2>What do you need today?</h2><p>Choose a tool and get started. No complicated setup.</p></div>
+        <span class="section-count">01 / TOOLS</span>
+      </div>
+      <div class="tool-grid">
+        <article class="tool-card featured-tool">
+          <div class="tool-icon lavender">％</div><span class="tool-tag">POPULAR</span>
+          <h3>Attendance calculator</h3><p>Work out your current attendance and see how many classes you can miss or need to attend.</p>
+          <a href="#attendance">Open calculator <span>↗</span></a>
+        </article>
+        <article class="tool-card">
+          <div class="tool-icon mint">✎</div>
+          <h3>Marks calculator</h3><p>Calculate your percentage from marks scored and total marks.</p>
+          <a href="#marks">Open calculator <span>↗</span></a>
+        </article>
+        <article class="tool-card">
+          <div class="tool-icon peach">▦</div>
+          <h3>Study planner</h3><p>Write down your priorities and make a simple plan for today.</p>
+          <a href="#planner">Make a plan <span>↗</span></a>
+        </article>
+        <article class="tool-card">
+          <div class="tool-icon blue">◷</div>
+          <h3>Focus timer</h3><p>Try a focused study session followed by a short break.</p>
+          <a href="#timer">Start focus timer <span>↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split-section" id="attendance">
+      <div class="section-intro"><span class="eyebrow">QUICK CALCULATOR</span><h2>Keep track of attendance.</h2><p>Enter the number of classes you have attended and the total classes held so far.</p><p class="fine-print">This is an estimate based only on the numbers you enter. It is not an official school record.</p></div>
+      <div class="calculator-panel">
+        <div class="panel-heading"><div class="tool-icon lavender">％</div><div><h3>Attendance calculator</h3><small>Calculate your percentage</small></div></div>
+        <div class="field-row"><label for="attended">Classes attended</label><input id="attended" type="number" min="0" placeholder="e.g. 42"></div>
+        <div class="field-row"><label for="totalClasses">Total classes held</label><input id="totalClasses" type="number" min="0" placeholder="e.g. 50"></div>
+        <button class="button primary full" id="attendanceBtn">Calculate attendance</button>
+        <div class="result-box" id="attendanceResult" aria-live="polite">Your result will appear here.</div>
+      </div>
+    </section>
+
+    <section class="section split-section reverse" id="marks">
+      <div class="calculator-panel">
+        <div class="panel-heading"><div class="tool-icon mint">✎</div><div><h3>Marks calculator</h3><small>Find your percentage</small></div></div>
+        <div class="field-row"><label for="marksScored">Marks scored</label><input id="marksScored" type="number" min="0" placeholder="e.g. 76"></div>
+        <div class="field-row"><label for="maxMarks">Total possible marks</label><input id="maxMarks" type="number" min="1" placeholder="e.g. 100"></div>
+        <button class="button primary full" id="marksBtn">Calculate percentage</button>
+        <div class="result-box" id="marksResult" aria-live="polite">Your result will appear here.</div>
+      </div>
+      <div class="section-intro"><span class="eyebrow">KNOW YOUR PROGRESS</span><h2>Understand your marks.</h2><p>Quickly calculate a percentage from a test, assignment or exam.</p><p class="fine-print">Always check your school's grading rules for official grades and results.</p></div>
+    </section>
+
+    <section class="section planner-section" id="planner">
+      <div class="section-heading">
+        <div><span class="eyebrow">MAKE A PLAN</span><h2>A clearer plan for today.</h2><p>Add tasks as they come to mind, then tick them off as you finish.</p></div>
+        <span class="section-count">02 / PLANNER</span>
+      </div>
+      <div class="planner-panel">
+        <div class="planner-top"><div><h3>Today's priorities</h3><small id="taskSummary">Your task list is saved in this browser.</small></div><span class="date-chip" id="todayDate"></span></div>
+        <form id="taskForm" class="task-entry"><input id="taskInput" type="text" maxlength="100" placeholder="e.g. Revise biology — cell structure" required><button class="button primary" type="submit">Add task +</button></form>
+        <ul class="task-list" id="taskList"><li class="empty-task">No tasks yet. Add one above to get started.</li></ul>
+      </div>
+    </section>
+
+    <section class="section timer-section" id="timer">
+      <div class="timer-copy"><span class="eyebrow">FOCUS MODE</span><h2>Give one thing<br>your attention.</h2><p>Try 25 minutes of focused study, then take a 5-minute break. You can change the session length.</p></div>
+      <div class="timer-panel"><span class="timer-label" id="timerMode">FOCUS SESSION</span><div class="timer-display" id="timerDisplay">25:00</div><div class="timer-controls"><button class="button primary" id="timerStart">Start</button><button class="button secondary" id="timerReset">Reset</button><button class="button secondary" id="timerModeToggle">Break: 5 min</button></div><small>Keep this tab open while the timer runs.</small></div>
+    </section>
+
+    <section class="assistant-section" id="assistant">
+      <div class="assistant-copy"><span class="eyebrow">COMING NEXT</span><h2>A study assistant<br>that explains, not just answers.</h2><p>Ask questions, explore difficult topics and work through problems step by step. The AI connection will be added in a later setup step.</p><ul><li>Clear, student-friendly explanations</li><li>Step-by-step help with school subjects</li><li>Revision notes and practice questions</li></ul></div>
+      <div class="chat-preview"><div class="chat-head"><span class="chat-avatar">✦</span><div><b>Study Assistant</b><small><span class="status-dot"></span> Preview — not connected yet</small></div></div><div class="chat-message bot-message">Hi! I’ll be here to help you understand topics and practise questions.</div><div class="chat-message user-message">Can you explain this step by step?</div><div class="chat-disabled"><span>AI chat will be enabled in a later step…</span><button disabled aria-label="Chat not available">↑</button></div><p class="privacy-note">Never share passwords, private school records or sensitive personal information with an AI tool.</p></div>
+    </section>
+
+    <section class="closing-cta"><span class="eyebrow">START WHERE YOU ARE</span><h2>Progress is built one step at a time.</h2><p>Pick one useful thing and get started today.</p><a class="button light-button" href="#tools">Explore the tools ↑</a></section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">S</span><span>Saudi Student Hub</span></a><p>Made to make student life a little easier.</p><small>Student-entered information is stored in this browser. Clear browser data to remove it. Always verify important academic information with your teacher or official materials.</small><div class="footer-bottom">© <span id="year"></span> Saudi Student Hub · A student project</div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
