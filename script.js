@@ -313,7 +313,13 @@ function renderExtraSubject(subject, chapterIndex){
     if(isLang==='English' && playlist){
       el.innerHTML=`<div class="revision-banner"><b>Class 11 ${subject} video lessons</b><p>The playlist is embedded below, so you can watch it on this page. Use the playlist menu in the player to choose the lesson that matches this chapter. Some course playlists are older, so compare lesson topics with your current textbook.</p></div><div class="video-grid"><div class="video-card"><h4>Full lessons and topic explanations</h4><p>${playlist.source}</p><iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/videoseries?list=${playlist.id}" title="Class 11 ${subject} lessons playlist" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p class="video-note">If embedding is blocked, <a href="https://www.youtube.com/playlist?list=${playlist.id}" target="_blank" rel="noopener">open the full playlist</a>.</p></div></div>`;
     } else if(isLang==='Arabic'){
-      el.innerHTML=`<div class="revision-banner"><b>الفيديوهات العربية قيد التحقق</b><p>لم نعثر بعد على قائمة موثوقة تطابق هذا الفصل والمنهج. لن نعرض فيديوهات عشوائية أو غير مرتبطة بالدرس. يمكنك اختيار English لمشاهدة قائمة الدروس المضمنة حالياً.</p></div>`;
+      const grade=String($('#classSelect').value);
+      const ainPage=sshAinStagePages[grade]||'https://www.ientv.edu.sa/ar/doros';
+      const stagePlaylist=sshArabicGradePlaylists[grade];
+      const player=stagePlaylist
+        ? `<iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/videoseries?list=${stagePlaylist}" title="عين دروس Arabic lessons for class ${grade}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p class="video-note">Use the playlist menu to select the subject and lesson. This is a grade-level lesson collection, not a chapter-matched CBSE playlist.</p>`
+        : `<p>Open the official grade page to choose the available term and subject lesson.</p>`;
+      el.innerHTML=`<div class="revision-banner"><b>دروس المواد باللغة العربية · Arabic-medium school lessons</b><p>محتوى تعليمي عربي من قنوات عين دروس. اختر المادة والفصل الدراسي من قائمة التشغيل أو الصفحة الرسمية. قد يختلف ترتيب الدروس عن منهج CBSE، لذا طابق عنوان الدرس مع كتابك.</p></div><div class="video-card"><h4>Class ${grade} · Arabic lessons</h4>${player}<p class="video-note"><a href="${ainPage}" target="_blank" rel="noopener">Open official عين دروس page for this grade</a> · <a href="https://www.ientv.edu.sa/ar/doros" target="_blank" rel="noopener">All grade lesson pages</a></p></div>`;
     } else {
       el.innerHTML=`<div class="revision-banner"><b>No verified playlist is available for this subject yet.</b><p>We are checking chapter-matched resources before adding them. This avoids showing unrelated videos.</p></div>`;
     }
@@ -443,3 +449,11 @@ $('#subjectSelect').onchange=()=>{activeChapter=0;renderChapters()};
 $('#languageSelect').onchange=()=>{if(activeTab==='videos')renderChapters()};
 sshUpdateSubjectOptions();
 renderChapters();
+
+
+// Verified Arabic-medium grade-level lesson playlists from official عين دروس pages.
+const sshArabicGradePlaylists = {
+  "6":"PL2i34QfxxoDnQpWhtGOdwkDYCABHLkV0L",
+  "8":"PL2i34QfxxoDnXA7Gvo1ose83K1Hyze4tW",
+  "9":"PL2i34QfxxoDn3jdzCo4fKgnYneMCzAU3K"
+};
