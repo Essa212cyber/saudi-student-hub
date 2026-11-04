@@ -362,3 +362,84 @@ renderTab = function(isChem){
 
 // Re-render once with the expanded libraries installed.
 renderChapters();
+
+
+// Saudi Student Hub — expanded class navigation and Arabic lecture pathway.
+const sshAinStagePages = {
+  "6":"https://www.ientv.edu.sa/ar/node/29",
+  "7":"https://www.ientv.edu.sa/ar/node/30",
+  "8":"https://www.ientv.edu.sa/ar/node/31",
+  "9":"https://www.ientv.edu.sa/ar/node/32",
+  "10":"https://www.ientv.edu.sa/ar/node/342",
+  "11":"https://www.ientv.edu.sa/ar/node/343",
+  "12":"https://www.ientv.edu.sa/ar/node/346"
+};
+const sshSubjectCatalog = {
+  CBSE: {
+    middle: ["Mathematics","Science","Social Science","English","Hindi","Arabic","Computer"],
+    senior: ["Physics","Chemistry","Biology","Mathematics","English","Arabic","Computer Science","Accountancy","Business Studies","Economics","History","Geography","Political Science","Psychology"]
+  },
+  Saudi: {
+    middle: ["Arabic","Islamic Studies","Mathematics","Science","English","Social Studies","Digital Skills"],
+    senior: ["Arabic","Islamic Studies","Mathematics","Physics","Chemistry","Biology","English","Digital Technology","Social Studies","Business Studies"]
+  }
+};
+function sshUpdateSubjectOptions(){
+  const curriculum=$('#curriculum').value;
+  const grade=Number($('#classSelect').value);
+  const subjects=(sshSubjectCatalog[curriculum]||sshSubjectCatalog.CBSE)[grade>=11?'senior':'middle'];
+  const previous=$('#subjectSelect').value;
+  $('#subjectSelect').innerHTML=subjects.map(x=>'<option value="'+x.replace(/"/g,'&quot;')+'">'+x+'</option>').join('');
+  $('#subjectSelect').value=subjects.includes(previous)?previous:subjects[0];
+}
+function sshGenericChapterPage(curr,grade,subject){
+  const lang=$('#languageSelect').value;
+  const ainUrl=sshAinStagePages[String(grade)];
+  const supported=(curr==='CBSE'&&String(grade)==='11'&&(['Chemistry','Biology','Physics','Mathematics','English','Arabic'].includes(subject)));
+  if(supported){
+    const chem=subject==='Chemistry', bio=subject==='Biology', extra=!!extraSubjects[subject];
+    if(chem){renderChapter(true);return}
+    if(bio||extra){renderExtraSubject(subject,activeChapter);return}
+  }
+  const label=curr==='CBSE'?'CBSE':'Saudi curriculum';
+  const tabs='<div class="tabs">'+tabButton('videos','▶ Lectures')+tabButton('notes','✎ Notes')+tabButton('questions','★ Questions')+tabButton('midterm','▤ Midterm')+tabButton('final','🏁 Final revision')+'</div><div class="tab-content" id="tabContent"></div>';
+  $('#chapterArea').innerHTML='<div class="chapter-top"><div><span class="eyebrow">'+label.toUpperCase()+' · CLASS '+grade+' · '+subject.toUpperCase()+'</span><h2>'+subject+' · Class '+grade+'</h2></div><span class="chapter-tag">COURSE SPACE</span></div><p class="chapter-desc">Choose a chapter from your current school textbook. The chapter-by-chapter catalogue is being matched to the correct edition before lessons and question banks are published.</p>'+tabs;
+  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{activeTab=b.dataset.tab;sshGenericChapterPage(curr,grade,subject)});
+  const el=$('#tabContent');
+  if(activeTab==='videos'){
+    if(lang==='Arabic'&&ainUrl){
+      el.innerHTML='<div class="revision-banner"><b>دروس باللغة العربية · Arabic-medium school lessons</b><p>Official Saudi Ministry of Education / عين دروس lesson page for this grade. It includes school lessons and term links. Choose the subject and lesson on the official page. For CBSE students, use these as Arabic-language concept support only; chapter order and syllabus may differ.</p></div><div class="video-card"><h4>Arabic lessons · Class '+grade+'</h4><iframe class="video-frame" src="'+ainUrl+'" title="Arabic school lessons for class '+grade+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p class="video-note">If the provider blocks embedding, <a href="'+ainUrl+'" target="_blank" rel="noopener">open the official Arabic lesson page</a>.</p></div><p class="video-note">Source: official عين دروس stage and grade pages. The publisher controls video availability.</p>';
+    } else {
+      el.innerHTML='<div class="revision-banner"><b>English lecture library is being verified</b><p>We will add embedded lessons only when the teacher, class, subject and chapter can be matched. No random or unrelated videos are shown here.</p></div>';
+    }
+  } else {
+    const title=activeTab==='notes'?'Chapter notes':activeTab==='questions'?'Question bank':activeTab==='midterm'?'Midterm revision':'Final examination revision';
+    el.innerHTML='<div class="revision-banner"><b>'+title+' · Class '+grade+' '+subject+'</b><p>This section will be filled after the exact curriculum edition and chapter list are confirmed. We will not invent chapter names, answers or exam questions.</p></div><p class="chapter-desc">Select Arabic under Lecture language to access the Arabic-medium lesson pathway where available.</p>';
+  }
+}
+renderChapters = function(){
+  sshUpdateSubjectOptions();
+  const curr=$('#curriculum').value, grade=$('#classSelect').value, subject=$('#subjectSelect').value;
+  const chem=curr==='CBSE'&&grade==='11'&&subject==='Chemistry';
+  const bio=curr==='CBSE'&&grade==='11'&&subject==='Biology';
+  const extra=curr==='CBSE'&&grade==='11'&&!!extraSubjects[subject];
+  if(chem||bio||extra){
+    const list=chem?chemistry.map(x=>x.title):bio?extraSubjects.Biology.map(x=>x[0]):extraSubjects[subject].map(x=>x[0]);
+    activeChapter=Math.min(activeChapter,list.length-1);
+    $('#chapterList').innerHTML='';
+    list.forEach((c,i)=>{const b=document.createElement('button');b.className='chapter-button'+(i===activeChapter?' active':'');b.textContent=String(i+1).padStart(2,'0')+'  '+c;b.onclick=()=>{activeChapter=i;renderChapters()};$('#chapterList').append(b)});
+    $('#chapterCount').textContent=String(list.length).padStart(2,'0');
+    if(chem)renderChapter(true);else renderExtraSubject(subject,activeChapter);
+    return;
+  }
+  activeChapter=0;
+  $('#chapterList').innerHTML='<button class="chapter-button active" type="button">Chapter catalogue being verified</button>';
+  $('#chapterCount').textContent='—';
+  sshGenericChapterPage(curr,grade,subject);
+};
+$('#curriculum').onchange=()=>{activeChapter=0;sshUpdateSubjectOptions();renderChapters()};
+$('#classSelect').onchange=()=>{activeChapter=0;sshUpdateSubjectOptions();renderChapters()};
+$('#subjectSelect').onchange=()=>{activeChapter=0;renderChapters()};
+$('#languageSelect').onchange=()=>{if(activeTab==='videos')renderChapters()};
+sshUpdateSubjectOptions();
+renderChapters();
