@@ -293,6 +293,14 @@ function generalQuestionMarkup(bank, heading){
 }
 function renderDefinitions(chapter){const cs=parseConcepts(chapter);return `<div class="revision-banner"><b>Learn the words before memorising the chapter</b><p>Each definition has a simple meaning. Read it, say it in your own words, then try to give your own example.</p></div><div class="notes-grid">${cs.map((c,i)=>`<div class="note"><b>${i+1}. ${c.term}</b><p>${c.easy}</p><small><b>Study tip:</b> Explain this term to a friend in one sentence.</small></div>`).join('')}</div>`}
 function renderExtraSubject(subject, chapterIndex){
+  // Embedded Class 11 course playlists. These are supplementary video libraries;
+  // students should match each lesson to their current textbook chapter.
+  const subjectVideoPlaylists = {
+    Biology: {id:'PLVLoWQFkZbhV712zSP3S2uH2SoDpzchvK', source:'Magnet Brains / Class 11 course playlist'},
+    Physics: {id:'PLVLoWQFkZbhXIV2NMcLdNROvfhAsW7Z-U', source:'Magnet Brains / Class 11 course playlist'},
+    Mathematics: {id:'PLVLoWQFkZbhVTcotKKM8XX5KVXSFyXixJ', source:'Magnet Brains / Class 11 course playlist'},
+    English: {id:'PLVLoWQFkZbhVWaTIGB27JMv0btP9bbJb2', source:'Class 11 English video playlist'}
+  };
  const chapters=extraSubjects[subject], ch=chapters[chapterIndex];
  const isLang=$('#languageSelect').value;
  $('#chapterArea').innerHTML=`<div class="chapter-top"><div><span class="eyebrow">CBSE · CLASS 11 · ${subject.toUpperCase()}</span><h2>${ch[0]}</h2></div><span class="chapter-tag">LEARNING LIBRARY</span></div><p class="chapter-desc">${ch[1]}</p><div class="tabs">${tabButton('videos','▶ Videos')}${tabButton('definitions','📘 Easy definitions')}${tabButton('notes','✎ Key points')}${tabButton('questions','★ Important questions')}${tabButton('midterm','▤ Midterm revision')}${tabButton('final','🏁 Final revision')}${tabButton('quiz','✓ Practice check')}</div><div class="tab-content" id="tabContent"></div>`;
@@ -300,7 +308,16 @@ function renderExtraSubject(subject, chapterIndex){
  const el=$('#tabContent');
  if(activeTab==='definitions')el.innerHTML=renderDefinitions(ch);
  else if(activeTab==='notes')el.innerHTML=`<div class="revision-banner"><b>Chapter explained simply</b><p>${ch[1]}</p></div>${renderDefinitions(ch)}`;
- else if(activeTab==='videos')el.innerHTML=`<div class="revision-banner"><b>Video lessons are being curated for this chapter.</b><p>We are adding only chapter-matched videos that can be played inside this page. We will not send students to random search results. For now, use the definitions and practice sections.</p></div>`;
+ else if(activeTab==='videos'){
+    const playlist=subjectVideoPlaylists[subject];
+    if(isLang==='English' && playlist){
+      el.innerHTML=`<div class="revision-banner"><b>Class 11 ${subject} video lessons</b><p>The playlist is embedded below, so you can watch it on this page. Use the playlist menu in the player to choose the lesson that matches this chapter. Some course playlists are older, so compare lesson topics with your current textbook.</p></div><div class="video-grid"><div class="video-card"><h4>Full lessons and topic explanations</h4><p>${playlist.source}</p><iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/videoseries?list=${playlist.id}" title="Class 11 ${subject} lessons playlist" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p class="video-note">If embedding is blocked, <a href="https://www.youtube.com/playlist?list=${playlist.id}" target="_blank" rel="noopener">open the full playlist</a>.</p></div>${subject==='English'?'<div class="video-card"><h4>Quick revision · Hornbill overview</h4><p>One-shot overview of the Class 11 Hornbill reader.</p><iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/ydf66kIAQQY" title="Class 11 English Hornbill revision" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p class="video-note">If embedding is blocked, <a href="https://www.youtube.com/watch?v=ydf66kIAQQY" target="_blank" rel="noopener">open the revision video</a>.</p></div>':''}</div>`;
+    } else if(isLang==='Arabic'){
+      el.innerHTML=`<div class="revision-banner"><b>الفيديوهات العربية قيد التحقق</b><p>لم نعثر بعد على قائمة موثوقة تطابق هذا الفصل والمنهج. لن نعرض فيديوهات عشوائية أو غير مرتبطة بالدرس. يمكنك اختيار English لمشاهدة قائمة الدروس المضمنة حالياً.</p></div>`;
+    } else {
+      el.innerHTML=`<div class="revision-banner"><b>No verified playlist is available for this subject yet.</b><p>We are checking chapter-matched resources before adding them. This avoids showing unrelated videos.</p></div>`;
+    }
+  }
  else if(activeTab==='questions'||activeTab==='midterm'||activeTab==='final'){
    const bank=buildGeneralBank(subject,ch);
    const heading=activeTab==='midterm'?'Midterm practice':activeTab==='final'?'Final examination practice':'Important questions';
