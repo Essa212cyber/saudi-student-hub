@@ -566,4 +566,4 @@ const sshArabicGradePlaylists = {
 
 
 // Page-specific default: interface language and lesson-video language are independent.
-(function(){const isArabicPage=document.documentElement.lang==="ar";const language=$("#languageSelect");if(language){language.value=isArabicPage?"العربية":"الإنجليزية";}const switchLink=document.querySelector(".top-actions a.primary-link");if(switchLink){switchLink.href=isArabicPage?"index-en.html":"index.html";switchLink.textContent=isArabicPage?"English":"العربية";}if(typeof renderChapters==="function")renderChapters();})();
+(function(){const isArabicPage=document.documentElement.lang==="ar";const language=$("#languageSelect");if(language){language.value=isArabicPage?"Arabic":"English";}const switchLink=document.querySelector(".top-actions a.primary-link");if(switchLink){switchLink.href=isArabicPage?"index-en.html":"index.html";switchLink.textContent=isArabicPage?"English":"العربية";}if(typeof renderChapters==="function")renderChapters();})();
