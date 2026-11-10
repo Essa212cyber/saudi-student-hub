@@ -519,7 +519,7 @@ const sshArabicGradePlaylists = {
   if(n.nodeType===Node.ELEMENT_NODE)translateUi(n);
   else if(n.nodeType===Node.TEXT_NODE){const t=n.nodeValue.trim();if(uiTranslations.has(t))n.nodeValue=n.nodeValue.replace(t,uiTranslations.get(t));}
  })));
- observer.observe(document.body,{childList:true,subtree:true});translateUi();
+ if(document.documentElement.lang==="ar"){observer.observe(document.body,{childList:true,subtree:true});translateUi();}
 })();
 
 /* Render verified Arabic grade playlists inside the page for grades with confirmed playlist IDs. */
@@ -563,3 +563,7 @@ const sshArabicGradePlaylists = {
  };
  if(activeTab==='notes'&&$('#curriculum').value==='CBSE'&&$('#classSelect').value==='11'&&$('#subjectSelect').value==='Chemistry')renderTab(true);
 })();
+
+
+// Page-specific default: interface language and lesson-video language are independent.
+(function(){const isArabicPage=document.documentElement.lang==="ar";const language=$("#languageSelect");if(language){language.value=isArabicPage?"العربية":"الإنجليزية";}const switchLink=document.querySelector(".top-actions a.primary-link");if(switchLink){switchLink.href=isArabicPage?"index-en.html":"index.html";switchLink.textContent=isArabicPage?"English":"العربية";}if(typeof renderChapters==="function")renderChapters();})();
