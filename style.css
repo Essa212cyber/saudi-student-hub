@@ -106,3 +106,50 @@ button,a,select,input{max-width:100%}
 .question h4{line-height:1.6}
 .revision-banner p{line-height:1.7}
 .tabs{flex-wrap:wrap;row-gap:8px}
+
+
+/* Saudi Student Hub refresh — emerald, deep-ink and warm neutral palette */
+:root{--bg:#f4f7f5;--surface:#fff;--ink:#172b2a;--muted:#667a76;--line:#dfe9e4;--navy:#123b36;--blue:#087f6b;--mint:#dff4eb;--purple:#e8f2ed;--shadow:0 16px 42px rgba(18,59,54,.075)}
+body{background:var(--bg);color:var(--ink)}
+.topbar{background:rgba(255,255,255,.96);border-color:var(--line);height:76px}
+.brandmark{background:#087f6b;border-radius:13px}
+.topbar nav a{padding:9px 0;position:relative}.topbar nav a:hover{color:#087f6b}
+.primary-link,.btn.primary{background:#087f6b}.primary-link:hover,.btn.primary:hover{background:#066858;transform:translateY(-1px)}
+.hero{background:linear-gradient(118deg,#f4f8f5 0%,#edf6f1 58%,#e6f3ee 100%);padding-top:76px;padding-bottom:70px}
+.hero h1 em{color:#087f6b}.hero-art{background:radial-gradient(circle,#d6eee4 0,transparent 67%)}
+.art-card{background:linear-gradient(145deg,#123b36,#1b5148);box-shadow:0 24px 60px rgba(18,59,54,.2)}
+.art-number{color:#8ce0bd}.art-progress span{background:#76d7ae}
+.bubble{border:1px solid #e4eee8}.stats{background:#123b36}.stats b{color:#8ce0bd}
+.section{padding-top:76px;padding-bottom:76px}
+.selector-panel,.chapter-panel,.chapter-area,.practice-card,.quiz-area,.tool-card{border-color:var(--line);box-shadow:0 12px 34px rgba(18,59,54,.055)}
+.selector-panel select,.tool-card input{background:#fbfdfb;border-color:#dfe9e4}
+.chapter-button.active,.chapter-button:hover{background:#e6f4ee;color:#087f6b}
+.chapter-tag{background:#e2f5ec;color:#167353}.tab.active{background:#123b36}
+.tab:not(.active):hover,.reveal:hover{background:#e6f4ee;color:#087f6b}
+.video-card{background:#fbfdfb;border-color:#dfe9e4}.video-frame{background:#102b27}
+.scope-note{background:#edf6f1;border-left-color:#087f6b;color:#536c65}
+.practice-section{background:#eaf2ee}.practice-card,.tool-card{border-radius:16px}
+.tool-symbol,.card-icon{color:#087f6b}#timer{color:#123b36}
+.assistant{background:linear-gradient(120deg,#103a34,#174b43)}.assistant .eyebrow{color:#8ce0bd}
+.chat-preview{background:#1b5148;border-color:#3c766a}.chat-bubble{background:#2b665b}
+.chat-bubble.reply{background:#e2f5ec;color:#1c5845}
+footer{background:#fff;border-color:var(--line)}
+.practice-card,.tool-card,.chapter-panel,.chapter-area,.selector-panel{transition:box-shadow .2s ease,transform .2s ease}
+.practice-card:hover,.tool-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(18,59,54,.09)}
+.dark{--bg:#0d1918;--surface:#142422;--ink:#e8f2ee;--muted:#a3b9b1;--line:#29413c;--navy:#0b2824;--blue:#39b995;--mint:#173b32;--purple:#1b332e;--shadow:0 18px 48px rgba(0,0,0,.22)}
+.dark .topbar,.dark footer,.dark .chapter-panel,.dark .chapter-area,.dark .selector-panel,.dark .practice-card,.dark .quiz-area,.dark .tool-card{background:#142422;color:var(--ink);border-color:var(--line)}
+.dark .hero{background:linear-gradient(120deg,#101f1d,#142b26)}.dark .practice-section{background:#10201d}
+.dark .selector-panel select,.dark .chapter-button,.dark .quiz-option,.dark .tool-card input,.dark .tab:not(.active){background:#1b302c;color:var(--ink);border-color:var(--line)}
+.dark .scope-note{background:#1b302c;color:#b6c9c1}.dark .video-card,.dark .note{background:#182c28;border-color:var(--line)}
+.dark .chapter-button.active,.dark .chapter-button:hover{background:#21463d;color:#8ce0bd}.dark .tab.active{background:#087f6b}
+@media(max-width:900px){.topbar{padding:0 22px}.topbar nav{gap:16px}.hero{padding:58px 6vw;gap:25px}.section{padding:60px 5vw}.tools-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){
+.topbar{height:auto;min-height:68px;flex-wrap:wrap;gap:10px;padding:12px 16px}.topbar nav{order:3;width:100%;justify-content:space-between;gap:8px;font-size:11px}
+.top-actions{margin-left:auto}.primary-link{padding:9px 11px;font-size:10px}.hero{grid-template-columns:1fr;padding:48px 22px 42px}
+.hero h1{letter-spacing:-2px}.hero-art{min-height:280px}.stats{grid-template-columns:repeat(2,1fr);padding:20px}
+.stats div:nth-child(2){border-right:0}.selector-panel{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px}
+.learning-layout{grid-template-columns:1fr}.chapter-panel{padding:13px}#chapterList{display:flex;overflow-x:auto;padding-bottom:4px}
+.chapter-button{white-space:nowrap;flex:0 0 auto}.chapter-area{padding:17px;min-height:420px}.video-grid,.notes-grid{grid-template-columns:1fr}
+.practice-grid,.tools-grid{grid-template-columns:1fr}.assistant{grid-template-columns:1fr;padding:42px 22px;gap:22px}
+.section{padding:48px 18px}.section-title h2{font-size:29px}.chapter-top h2{font-size:22px}
+}
