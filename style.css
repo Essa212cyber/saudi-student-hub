@@ -153,3 +153,20 @@ footer{background:#fff;border-color:var(--line)}
 .practice-grid,.tools-grid{grid-template-columns:1fr}.assistant{grid-template-columns:1fr;padding:42px 22px;gap:22px}
 .section{padding:48px 18px}.section-title h2{font-size:29px}.chapter-top h2{font-size:22px}
 }
+
+/* Arabic interface: RTL layout while keeping study material LTR */
+html[dir="rtl"] body{direction:rtl;text-align:right}
+html[dir="rtl"] .topbar,html[dir="rtl"] .topbar nav,html[dir="rtl"] .top-actions{direction:rtl}
+html[dir="rtl"] .hero,html[dir="rtl"] .section,html[dir="rtl"] footer{direction:rtl}
+html[dir="rtl"] .hero-copy,html[dir="rtl"] .section-title,html[dir="rtl"] .tool-card,html[dir="rtl"] .practice-card{text-align:right}
+html[dir="rtl"] .hero-meta{justify-content:flex-start}
+html[dir="rtl"] .selector-panel,html[dir="rtl"] .learning-layout{direction:rtl}
+html[dir="rtl"] .chapter-panel,html[dir="rtl"] .chapter-area{direction:rtl;text-align:right}
+html[dir="rtl"] #chapterArea .tab-content,html[dir="rtl"] #chapterArea .notes-grid,html[dir="rtl"] #chapterArea .question,html[dir="rtl"] #chapterArea .revision-list{direction:ltr;text-align:left}
+html[dir="rtl"] #chapterArea .video-card{direction:rtl;text-align:right}
+html[dir="rtl"] #chapterArea .video-frame{direction:ltr}
+html[dir="rtl"] .revision-list{padding-left:0;padding-right:24px}
+html[dir="rtl"] .scope-note{border-left:0;border-right:3px solid #087f6b}
+html[dir="rtl"] .answer{direction:ltr;text-align:left}
+html[dir="rtl"] .chapter-button{text-align:right}
+html[dir="rtl"] input,html[dir="rtl"] select{direction:rtl}
