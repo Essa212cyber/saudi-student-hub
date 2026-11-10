@@ -170,3 +170,9 @@ html[dir="rtl"] .scope-note{border-left:0;border-right:3px solid #087f6b}
 html[dir="rtl"] .answer{direction:ltr;text-align:left}
 html[dir="rtl"] .chapter-button{text-align:right}
 html[dir="rtl"] input,html[dir="rtl"] select{direction:rtl}
+
+.expanded-notes{margin-top:26px}
+.expanded-notes h3{font-size:18px;margin:24px 0 12px;color:var(--ink)}
+.expanded-notes .revision-list{margin-top:8px}
+html[dir="rtl"] .expanded-notes{direction:rtl;text-align:right}
+html[dir="rtl"] .expanded-notes .notes-grid,html[dir="rtl"] .expanded-notes .revision-list{direction:ltr;text-align:left}
