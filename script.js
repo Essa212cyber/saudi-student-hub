@@ -393,7 +393,8 @@ const sshSubjectCatalog = {
 function sshUpdateSubjectOptions(){
   const curriculum=$('#curriculum').value;
   const grade=Number($('#classSelect').value);
-  const subjects=(sshSubjectCatalog[curriculum]||sshSubjectCatalog.CBSE)[grade>=11?'senior':'middle'];
+  const catalogKey=curriculum==='Saudi curriculum'?'Saudi':curriculum;
+  const subjects=(sshSubjectCatalog[catalogKey]||sshSubjectCatalog.CBSE)[grade>=11?'senior':'middle'];
   const previous=$('#subjectSelect').value;
   $('#subjectSelect').innerHTML=subjects.map(x=>'<option value="'+x.replace(/"/g,'&quot;')+'">'+x+'</option>').join('');
   $('#subjectSelect').value=subjects.includes(previous)?previous:subjects[0];
