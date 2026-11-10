@@ -557,9 +557,9 @@ const sshArabicGradePlaylists = {
   const definitions=(d.qs||[]).map((q,i)=>'<div class="note"><b>'+(i+1)+'. '+q[0]+'</b><p>'+q[1]+'</p></div>').join('');
   const formulae=(d.notes||[]).filter(n=>/[=ΔΣ√²³ₐₚₛₜ]|molarity|mole|enthalpy|equilibrium|oxidation number|electron/i.test(n)).map(n=>'<li>'+n+'</li>').join('');
   root.insertAdjacentHTML('beforeend',
-   '<section class="expanded-notes"><h3>Core definitions and short answers</h3><div class="notes-grid">'+definitions+'</div>'+
-   '<h3>Important equations, rules and laws</h3><ul class="revision-list">'+(formulae||'<li>Chapter-specific equations are being checked against the textbook.</li>')+'</ul>'+
-   '<div class="scope-note">Derivations and fully worked numerical solutions must be checked against the selected syllabus before they are added. This chapter note set is a study aid, not a guarantee of full marks.</div></section>');
+   '<section class="expanded-notes"><h3>التعريفات الأساسية والإجابات القصيرة</h3><div class="notes-grid">'+definitions+'</div>'+
+   '<h3>المعادلات والقواعد والقوانين المهمة</h3><ul class="revision-list">'+(formulae||'<li>Chapter-specific equations are being checked against the textbook.</li>')+'</ul>'+
+   '<div class="scope-note">ستُضاف الاشتقاقات والمسائل العددية المحلولة بعد التحقق من المنهج المحدد. هذه الملاحظات أداة للمذاكرة وليست ضماناً للحصول على الدرجة الكاملة.</div></section>');
  };
  if(activeTab==='notes'&&$('#curriculum').value==='CBSE'&&$('#classSelect').value==='11'&&$('#subjectSelect').value==='Chemistry')renderTab(true);
 })();
