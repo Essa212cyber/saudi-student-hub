@@ -521,3 +521,26 @@ const sshArabicGradePlaylists = {
  })));
  observer.observe(document.body,{childList:true,subtree:true});translateUi();
 })();
+
+/* Render verified Arabic grade playlists inside the page for grades with confirmed playlist IDs. */
+(function(){
+ const originalRenderChapters=renderChapters;
+ renderChapters=function(){
+  originalRenderChapters();
+  const grade=$('#classSelect').value;
+  const curriculum=$('#curriculum').value;
+  const subject=$('#subjectSelect').value;
+  const language=$('#languageSelect').value;
+  const isDetailedClass11=curriculum==='CBSE'&&grade==='11'&&(subject==='Chemistry'||subject==='Biology');
+  if(language!=='Arabic'||isDetailedClass11)return;
+  const playlist=sshArabicGradePlaylists[grade];
+  if(playlist){
+   $('#chapterList').innerHTML='<div class="revision-banner"><b>دروس الصف '+grade+'</b><p>قائمة تشغيل عربية تعليمية من قناة عين دروس. تحتوي على دروس للصف وقد لا تكون مرتبة حسب مادة CBSE المختارة.</p></div>';
+   $('#chapterCount').textContent='01';
+   $('#chapterArea').innerHTML='<div class="chapter-top"><div><span class="eyebrow">مكتبة الفيديو العربية</span><h2>دروس الصف '+grade+'</h2></div><span class="chapter-tag">عين دروس</span></div><p class="chapter-desc">شروحات عربية داخل الموقع. اختر الفيديو من قائمة التشغيل.</p><div class="video-card"><iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/videoseries?list='+playlist+'" title="دروس الصف '+grade+' باللغة العربية" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p class="video-note">هذه قائمة تشغيل للصف وليست مكتبة مفهرسة لكل مادة وفصل. تتم إضافة المحتوى المطابق لكل مادة بعد التحقق منه.</p></div>';
+  }else{
+   $('#chapterArea').insertAdjacentHTML('beforeend','<div class="scope-note">لم يتم التحقق بعد من قائمة تشغيل عربية مضمّنة لهذا الصف والمادة. لن نعرض فيديو عشوائياً. المصدر الرسمي للدروس هو <a href="https://www.ientv.edu.sa/ar/doros" target="_blank" rel="noopener">قنوات عين دروس</a>.</div>');
+  }
+ };
+ if($('#languageSelect').value==='Arabic')renderChapters();
+})();
