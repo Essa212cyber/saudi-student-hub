@@ -415,8 +415,27 @@ function sshGenericChapterPage(curr,grade,subject){
   if(activeTab==='videos'){
     if(lang==='Arabic'&&ainUrl){
       el.innerHTML='<div class="revision-banner"><b>دروس باللغة العربية · Arabic-medium school lessons</b><p>Official Saudi Ministry of Education / عين دروس lesson page for this grade. It includes school lessons and term links. Choose the subject and lesson on the official page. For CBSE students, use these as Arabic-language concept support only; chapter order and syllabus may differ.</p></div><div class="video-card"><h4>Arabic lessons · Class '+grade+'</h4><iframe class="video-frame" src="'+ainUrl+'" title="Arabic school lessons for class '+grade+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p class="video-note">If the provider blocks embedding, <a href="'+ainUrl+'" target="_blank" rel="noopener">open the official Arabic lesson page</a>.</p></div><p class="video-note">Source: official عين دروس stage and grade pages. The publisher controls video availability.</p>';
+    } else if(lang==='English' && curr==='CBSE') {
+      const gradeKey=String(grade);
+      const verified=(sshVerifiedEnglishPlaylists[gradeKey]||{});
+      let ids=verified[subject]||[];
+      if(subject==='Science' && gradeKey==='10') ids=[
+        'PLVLoWQFkZbhXAipqg8dmzLQOED1uxgUTx',
+        'PLVLoWQFkZbhVbIi9ux7sKREnFo3jrrKzQ',
+        'PLVLoWQFkZbhUmaeiHa7xKTQ3ByL6XujcQ'
+      ];
+      const magnetCourseUrl=gradeKey==='12'
+        ? 'https://www.magnetbrains.com/courses/cbse-class-12th-science-stream-full-video-course/'
+        : gradeKey==='11'
+          ? 'https://www.magnetbrains.com/courses/cbse-class-11th-science-stream-full-video-course/'
+          : 'https://www.magnetbrains.com/';
+      if(ids.length) {
+        el.innerHTML='<div class="revision-banner"><b>Verified English video playlists · Class '+grade+' '+subject+'</b><p>These playlists are from Magnet Brains. Choose a lesson from the playlist menu. Match the video title with your current textbook because chapter order can vary between syllabus editions.</p></div><div class="video-grid">'+ids.map((id,n)=>'<div class="video-card"><h4>'+subject+' · '+(ids.length>1?'Topic playlist '+(n+1):'Full lesson playlist')+'</h4><p>Magnet Brains · English-medium lessons</p><iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/videoseries?list='+id+'" title="Class '+grade+' '+subject+' English lessons" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>').join('')+'</div><p class="video-note">If your textbook uses a different chapter order, use the playlist menu to find the matching topic.</p>';
+      } else {
+        el.innerHTML='<div class="revision-banner"><b>English course catalogue · Class '+grade+'</b><p>We are expanding the embedded chapter playlists. The publisher has a wider free course catalogue for this class; the course page lists subjects and lesson sequences.</p></div><div class="video-card"><h4>Magnet Brains · English-medium course library</h4><p>Free CBSE course catalogue with class-wise subject courses and recorded lessons.</p><a class="btn primary small" href="'+magnetCourseUrl+'" target="_blank" rel="noopener">Browse official Class '+grade+' courses ↗</a></div><p class="video-note">This class/subject does not yet have a verified in-page playlist in Saudi Student Hub. We will add chapter-matched embedded playlists as they are checked.</p>';
+      }
     } else {
-      el.innerHTML='<div class="revision-banner"><b>English lecture library is being verified</b><p>We will add embedded lessons only when the teacher, class, subject and chapter can be matched. No random or unrelated videos are shown here.</p></div>';
+      el.innerHTML='<div class="revision-banner"><b>Choose a verified lesson source</b><p>For English-medium CBSE lessons, the embedded playlists currently cover selected classes and subjects. For other subjects, use the official course catalogue while we add chapter-matched playlists. For Saudi-curriculum lessons, select Arabic or consult the official Ministry lesson source.</p></div><div class="video-card"><h4>Free English-medium course catalogue</h4><p>Magnet Brains provides class-wise courses from Classes 6–12, including science, mathematics, languages and other subjects.</p><a class="btn primary small" href="https://www.magnetbrains.com/" target="_blank" rel="noopener">Open official course catalogue ↗</a></div>';
     }
   } else {
     const title=activeTab==='notes'?'Chapter notes':activeTab==='questions'?'Question bank':activeTab==='midterm'?'Midterm revision':'Final examination revision';
@@ -450,6 +469,21 @@ $('#languageSelect').onchange=()=>{if(activeTab==='videos')renderChapters()};
 sshUpdateSubjectOptions();
 renderChapters();
 
+
+// English video playlists checked against the publisher's public playlist listings.
+const sshVerifiedEnglishPlaylists = {
+  "8": { "Science": ["PLVLoWQFkZbhV8K8NiJrFoMSwa_34UDMdg"] },
+  "9": {
+    "Physics": ["PLVLoWQFkZbhXPtVijvwSni52nnKIh7p2k"],
+    "Biology": ["PLVLoWQFkZbhU9Q_nMpMMB9HHyy4_AUXID"],
+    "Chemistry": ["PLVLoWQFkZbhW-jg1uCwnBXFE4dI9O87ni"]
+  },
+  "10": {
+    "Physics": ["PLVLoWQFkZbhXAipqg8dmzLQOED1uxgUTx"],
+    "Chemistry": ["PLVLoWQFkZbhVbIi9ux7sKREnFo3jrrKzQ"],
+    "Biology": ["PLVLoWQFkZbhUmaeiHa7xKTQ3ByL6XujcQ"]
+  }
+};
 
 // Verified Arabic-medium grade-level lesson playlists from official عين دروس pages.
 const sshArabicGradePlaylists = {
