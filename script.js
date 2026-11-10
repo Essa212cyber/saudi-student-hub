@@ -492,3 +492,32 @@ const sshArabicGradePlaylists = {
   "8":"PL2i34QfxxoDnXA7Gvo1ose83K1Hyze4tW",
   "9":"PL2i34QfxxoDn3jdzCo4fKgnYneMCzAU3K"
 };
+
+/* Arabic interface labels; lesson titles, notes, definitions and exam answers remain in English. */
+(function(){
+ const uiTranslations=new Map([
+ ['▶ Videos','▶ الفيديوهات'],['✎ Notes','✎ الملاحظات'],['★ Important questions','★ الأسئلة المهمة'],
+ ['▤ Midterm revision','▤ مراجعة منتصف الفصل'],['🏁 Final revision','🏁 مراجعة الاختبار النهائي'],['✓ Chapter quiz','✓ اختبار الفصل'],
+ ['Show answer / solution','عرض الإجابة / الحل'],['Show answer','عرض الإجابة'],['Hide answer','إخفاء الإجابة'],
+ ['Key point','نقطة أساسية'],['important questions','الأسئلة المهمة'],['midterm practice','تدريب منتصف الفصل'],
+ ['final exam practice','تدريب الاختبار النهائي'],['Chapter knowledge check','اختبر فهمك للفصل'],
+ ['Chapter content is being curated.','يجري إعداد محتوى هذا الفصل.'],
+ ['Detailed notes, videos and questions will be added chapter by chapter after syllabus verification.','ستُضاف الملاحظات والفيديوهات والأسئلة لكل فصل بعد التحقق من المنهج.'],
+ ['This syllabus section is being prepared.','يجري إعداد هذا القسم من المنهج.'],
+ ['We are not going to show guessed chapter names or random video search results. This section will be populated after checking the correct curriculum and textbook.','لن نعرض أسماء فصول أو فيديوهات عشوائية. ستُضاف المواد بعد مراجعة المنهج والكتاب الصحيحين.'],
+ ['CONTENT ROADMAP','خطة المحتوى'],['CHAPTER LIBRARY','مكتبة الفصول'],['SAMPLE CONTENT','محتوى تجريبي'],
+ ['English learning videos','فيديوهات تعليمية باللغة الإنجليزية'],
+ ['Selected chapter-specific lessons and revision videos.','دروس ومراجعات مختارة خاصة بهذا الفصل.'],
+ ['Videos are embedded from their publishers. Arabic resources are concept-support materials, not a claim that they follow the CBSE textbook sequence exactly.','تُعرض الفيديوهات من ناشريها. وقد تكون بعض الشروحات العربية مساعدة للمفاهيم ولا تتبع ترتيب كتاب CBSE حرفياً.']
+ ]);
+ function translateUi(root=document){
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];
+  while(walker.nextNode())nodes.push(walker.currentNode);
+  for(const n of nodes){const t=n.nodeValue.trim();if(uiTranslations.has(t))n.nodeValue=n.nodeValue.replace(t,uiTranslations.get(t));}
+ }
+ const observer=new MutationObserver(records=>records.forEach(r=>r.addedNodes.forEach(n=>{
+  if(n.nodeType===Node.ELEMENT_NODE)translateUi(n);
+  else if(n.nodeType===Node.TEXT_NODE){const t=n.nodeValue.trim();if(uiTranslations.has(t))n.nodeValue=n.nodeValue.replace(t,uiTranslations.get(t));}
+ })));
+ observer.observe(document.body,{childList:true,subtree:true});translateUi();
+})();
