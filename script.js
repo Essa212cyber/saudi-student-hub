@@ -818,3 +818,125 @@ const sshArabicGradePlaylists = {
     renderChapters();
   }
 })();
+
+/* SAUDI STUDENT HUB — CLASS 11 BIOLOGY CHAPTER 2 */
+
+(function () {
+  const biologicalClassification = {
+    notes: [
+      ["Classification", "Classification is the systematic arrangement of organisms into groups based on similarities and differences."],
+      ["Five-kingdom classification", "R.H. Whittaker proposed the five-kingdom classification in 1969: Monera, Protista, Fungi, Plantae and Animalia."],
+      ["Basis of classification", "The major criteria include cell structure, body organisation, mode of nutrition, reproduction and evolutionary relationships."],
+      ["Kingdom Monera", "Monerans are prokaryotic organisms. They lack a true nucleus and membrane-bound organelles. Examples include bacteria and cyanobacteria."],
+      ["Archaebacteria", "Archaebacteria are prokaryotes that can live in extreme environments. Major groups include methanogens, halophiles and thermoacidophiles."],
+      ["Eubacteria", "Eubacteria are commonly called true bacteria. They have a rigid cell wall in most species and show different modes of nutrition."],
+      ["Cyanobacteria", "Cyanobacteria are photosynthetic prokaryotes. Some, such as Nostoc and Anabaena, can fix atmospheric nitrogen."],
+      ["Kingdom Protista", "Protists are mostly unicellular eukaryotic organisms. They are commonly found in aquatic environments."],
+      ["Chrysophytes", "This group includes diatoms and golden algae. Diatoms have silica-rich cell walls that form two overlapping shells."],
+      ["Dinoflagellates", "Dinoflagellates are mostly marine and photosynthetic. Many have two flagella. Some species cause red tides."],
+      ["Euglenoids", "Euglenoids such as Euglena are usually freshwater organisms. They have a protein-rich pellicle instead of a cell wall and can be photosynthetic in sunlight."],
+      ["Slime moulds", "Slime moulds are saprophytic protists. Under suitable conditions they form fruiting bodies that produce spores."],
+      ["Protozoans", "Protozoans are heterotrophic protists. Major groups include amoeboid, flagellated, ciliated and sporozoans."],
+      ["Kingdom Fungi", "Fungi are eukaryotic, heterotrophic organisms that absorb nutrients. Their cell walls usually contain chitin."],
+      ["Fungal nutrition", "Fungi may be saprophytic, parasitic or symbiotic. They commonly reproduce through spores."],
+      ["Fungal hyphae", "Hyphae are thread-like structures that form a network called the mycelium. Some fungi have septate hyphae, while others have aseptate or coenocytic hyphae."],
+      ["Major fungal classes", "The traditional NCERT groups are Phycomycetes, Ascomycetes, Basidiomycetes and Deuteromycetes."],
+      ["Kingdom Plantae", "Plantae includes multicellular eukaryotic organisms that generally contain chlorophyll and perform photosynthesis."],
+      ["Kingdom Animalia", "Animalia includes multicellular eukaryotic organisms that obtain nutrition by ingestion and generally lack cell walls."],
+      ["Viruses", "Viruses are acellular infectious agents. They contain genetic material, either DNA or RNA, enclosed in a protein coat and reproduce only inside living host cells."],
+      ["Viroids", "Viroids are infectious agents made of small, circular RNA without a protein coat. They were discovered by T.O. Diener."],
+      ["Lichens", "Lichens are a symbiotic association between an alga or cyanobacterium and a fungus. The photosynthetic partner provides food, while the fungal partner provides shelter and absorbs water and minerals."]
+    ],
+    questions: [
+      ["Who proposed the five-kingdom classification and in which year?", "R.H. Whittaker proposed it in 1969."],
+      ["Name the five kingdoms.", "Monera, Protista, Fungi, Plantae and Animalia."],
+      ["Write two characteristics of kingdom Monera.", "Monerans are prokaryotic and lack a true nucleus and membrane-bound organelles."],
+      ["What are archaebacteria?", "They are prokaryotic organisms often adapted to extreme environments, such as high salt concentration or high temperature."],
+      ["What are methanogens?", "Methanogens are archaebacteria that produce methane. They are found in anaerobic environments, including the rumen of cattle."],
+      ["What are cyanobacteria? Give two examples.", "They are photosynthetic prokaryotes. Examples include Nostoc and Anabaena."],
+      ["Why are diatoms called chief producers in oceans?", "Diatoms are photosynthetic plankton and form an important base of many aquatic food chains."],
+      ["What causes red tides?", "Rapid multiplication of certain red dinoflagellates can cause red tides."],
+      ["What is a pellicle?", "A pellicle is a flexible protein-rich covering found in euglenoids; it replaces a rigid cell wall."],
+      ["What is mycelium?", "Mycelium is the network of thread-like fungal hyphae."],
+      ["What is the fungal cell wall made of?", "It usually contains chitin and other complex polysaccharides."],
+      ["Differentiate between saprophytic and parasitic fungi.", "Saprophytic fungi obtain nutrients from dead and decaying organic matter. Parasitic fungi obtain nutrients from living hosts and may cause disease."],
+      ["What are lichens?", "Lichens are a symbiotic association between a fungus and a photosynthetic partner, usually an alga or cyanobacterium."],
+      ["Why are viruses called obligate parasites?", "They can multiply only inside living host cells because they depend on the host's cellular machinery."],
+      ["What is the difference between a virus and a viroid?", "A virus contains DNA or RNA enclosed in a protein coat. A viroid consists of small infectious RNA without a protein coat."],
+      ["Who discovered viroids?", "T.O. Diener discovered viroids."],
+      ["What are bacteriophages?", "Bacteriophages are viruses that infect bacteria."],
+      ["What is the difference between prokaryotic and eukaryotic cells?", "Prokaryotic cells lack a membrane-bound nucleus and membrane-bound organelles. Eukaryotic cells have them."],
+      ["Name the four traditional major classes of fungi in NCERT.", "Phycomycetes, Ascomycetes, Basidiomycetes and Deuteromycetes."],
+      ["What is the role of the fungal partner in lichens?", "The fungal partner provides protection and helps absorb water and minerals."]
+    ]
+  };
+
+  const previousRenderTab = renderTab;
+
+  renderTab = function (isChem) {
+    const isChapterTwo =
+      !isChem &&
+      activeChapter === 1 &&
+      document.querySelector("#subjectSelect")?.value === "Biology" &&
+      document.querySelector("#classSelect")?.value === "11" &&
+      document.querySelector("#curriculum")?.value === "CBSE";
+
+    if (!isChapterTwo) {
+      return previousRenderTab(isChem);
+    }
+
+    const el = document.querySelector("#tabContent");
+    if (!el) return;
+
+    if (activeTab === "notes") {
+      el.innerHTML = `
+        <div class="notes-grid">
+          ${biologicalClassification.notes.map((n, i) => `
+            <div class="note">
+              <b>${i + 1}. ${n[0]}</b>
+              <p>${n[1]}</p>
+            </div>
+          `).join("")}
+        </div>`;
+    } else if (
+      activeTab === "questions" ||
+      activeTab === "midterm" ||
+      activeTab === "final"
+    ) {
+      const heading =
+        activeTab === "midterm" ? "Midterm practice" :
+        activeTab === "final" ? "Final examination practice" :
+        "Important questions";
+
+      el.innerHTML = `
+        <div class="revision-banner">
+          <b>${heading} — Biological Classification</b>
+          <p>Answer each question yourself before revealing the answer.</p>
+        </div>
+        ${biologicalClassification.questions.map((q, i) => `
+          <div class="question">
+            <h4>${i + 1}. ${q[0]}</h4>
+            <button class="reveal" data-reveal="${i}">Show answer</button>
+            <div class="answer" id="answer${i}">${q[1]}</div>
+          </div>
+        `).join("")}`;
+      bindReveals();
+    } else if (activeTab === "videos") {
+      el.innerHTML = `
+        <div class="revision-banner">
+          <b>Chapter 2 video lessons</b>
+          <p>Chapter-specific English and Arabic embedded lessons still need to be verified before adding them.</p>
+        </div>`;
+    } else {
+      return previousRenderTab(isChem);
+    }
+  };
+
+  if (
+    document.querySelector("#subjectSelect")?.value === "Biology" &&
+    document.querySelector("#classSelect")?.value === "11" &&
+    document.querySelector("#curriculum")?.value === "CBSE"
+  ) {
+    renderChapters();
+  }
+})();
