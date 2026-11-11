@@ -940,3 +940,64 @@ const sshArabicGradePlaylists = {
     renderChapters();
   }
 })();
+
+
+/* CURRICULUM ROADMAP — official Saudi secondary pathway selector */
+(function(){
+  const curriculum=document.querySelector("#curriculum");
+  const grade=document.querySelector("#classSelect");
+  const label=document.querySelector("#saudiPathwayLabel");
+  const pathway=document.querySelector("#saudiPathwaySelect");
+  if(!curriculum||!grade||!label||!pathway) return;
+
+  const saved=localStorage.getItem("sshSaudiPathway");
+  if(saved && [...pathway.options].some(o=>o.value===saved)) pathway.value=saved;
+
+  function syncPathway(){
+    const isSaudi=curriculum.value==="Saudi curriculum";
+    const g=Number(grade.value);
+    label.hidden=!(isSaudi && g>=10);
+    if(!isSaudi) return;
+
+    if(g===10){
+      pathway.value="Common First Year";
+      pathway.disabled=true;
+    } else if(g>=11){
+      pathway.disabled=false;
+      if(pathway.value==="Common First Year"){
+        pathway.value="General Pathway";
+      }
+    }
+    localStorage.setItem("sshSaudiPathway",pathway.value);
+  }
+
+  function refresh(){
+    syncPathway();
+    if(typeof renderChapters==="function") renderChapters();
+  }
+
+  curriculum.addEventListener("change",refresh);
+  grade.addEventListener("change",refresh);
+  pathway.addEventListener("change",function(){
+    localStorage.setItem("sshSaudiPathway",pathway.value);
+    if(typeof renderChapters==="function") renderChapters();
+  });
+
+  const oldRender=window.renderChapters;
+  if(typeof oldRender==="function"){
+    window.renderChapters=function(){
+      oldRender();
+      const isSaudi=curriculum.value==="Saudi curriculum";
+      const g=Number(grade.value);
+      const area=document.querySelector("#chapterArea");
+      if(!isSaudi||g<10||!area) return;
+      const path=pathway.value;
+      const note=document.createElement("div");
+      note.className="revision-banner";
+      note.innerHTML="<b>Saudi curriculum · "+path+"</b><p>Official textbook catalogues are being matched to the selected secondary pathway. Chapter names and study notes will be published only after checking the Ministry textbook edition.</p><p><a href='https://madrasatibeta.moe.gov.sa/books?Language=2' target='_blank' rel='noopener'>Open official Ministry textbook catalogue</a></p>";
+      area.prepend(note);
+    };
+  }
+  syncPathway();
+  if(typeof renderChapters==="function") renderChapters();
+})();
