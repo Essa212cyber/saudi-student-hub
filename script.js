@@ -567,3 +567,151 @@ const sshArabicGradePlaylists = {
 
 // Page-specific default: interface language and lesson-video language are independent.
 (function(){const isArabicPage=document.documentElement.lang==="ar";const language=$("#languageSelect");if(language){language.value=isArabicPage?"Arabic":"English";}const switchLink=document.querySelector(".top-actions a.primary-link");if(switchLink){switchLink.href=isArabicPage?"index-en.html":"index.html";switchLink.textContent=isArabicPage?"English":"العربية";}if(typeof renderChapters==="function")renderChapters();})();
+
+/* ==========================================
+   SAUDI STUDENT HUB — SELECTORS & SAVING
+   Add this at the very end of script.js
+   ========================================== */
+
+(function () {
+  "use strict";
+
+  const $ = (selector) => document.querySelector(selector);
+
+  // 1. Load the correct subjects for the selected curriculum and grade.
+  function refreshSubjects() {
+    if (typeof sshUpdateSubjectOptions === "function") {
+      sshUpdateSubjectOptions();
+    }
+
+    if (typeof renderChapters === "function") {
+      renderChapters();
+    }
+  }
+
+  const curriculum = $("#curriculum");
+  const grade = $("#classSelect");
+  const subject = $("#subjectSelect");
+  const language = $("#languageSelect");
+
+  if (curriculum) {
+    curriculum.addEventListener("change", refreshSubjects);
+  }
+
+  if (grade) {
+    grade.addEventListener("change", refreshSubjects);
+  }
+
+  // 2. Keep the selected lesson language on this device.
+  if (language) {
+    const savedLanguage = localStorage.getItem("sshVideoLanguage");
+
+    if (savedLanguage === "English" || savedLanguage === "Arabic") {
+      language.value = savedLanguage;
+    }
+
+    language.addEventListener("change", function () {
+      localStorage.setItem("sshVideoLanguage", language.value);
+
+      if (typeof renderChapters === "function") {
+        renderChapters();
+      }
+    });
+  }
+
+  // 3. Remember dark mode.
+  const themeButton = $("#themeToggle");
+
+  if (localStorage.getItem("sshTheme") === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  if (themeButton) {
+    themeButton.addEventListener("click", function () {
+      const isDark = document.body.classList.contains("dark");
+      localStorage.setItem("sshTheme", isDark ? "dark" : "light");
+    });
+  }
+
+  // 4. Restore the last attendance calculator entries.
+  ["attended", "total", "marks", "outOf"].forEach(function (id) {
+    const field = document.getElementById(id);
+
+    if (!field) return;
+
+    const saved = localStorage.getItem("ssh_" + id);
+
+    if (saved !== null) {
+      field.value = saved;
+    }
+
+    field.addEventListener("input", function () {
+      localStorage.setItem("ssh_" + id, field.value);
+    });
+  });
+
+  // 5. Update the footer year automatically.
+  const year = $("#year");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+
+  // 6. Prevent invalid attendance and marks calculations.
+  function addValidation(buttonId, firstId, secondId, outputId, label) {
+    const button = $("#" + buttonId);
+    const first = $("#" + firstId);
+    const second = $("#" + secondId);
+    const output = $("#" + outputId);
+
+    if (!button || !first || !second || !output) return;
+
+    button.addEventListener("click", function () {
+      const obtained = Number(first.value);
+      const totalValue = Number(second.value);
+
+      if (
+        first.value === "" ||
+        second.value === "" ||
+        !Number.isFinite(obtained) ||
+        !Number.isFinite(totalValue) ||
+        totalValue <= 0 ||
+        obtained < 0 ||
+        obtained > totalValue
+      ) {
+        output.textContent = "Please enter valid values.";
+        return;
+      }
+
+      output.textContent =
+        label + ": " + ((obtained / totalValue) * 100).toFixed(2) + "%";
+    });
+  }
+
+  addValidation(
+    "attendanceBtn",
+    "attended",
+    "total",
+    "attendanceResult",
+    "Attendance"
+  );
+
+  addValidation(
+    "marksBtn",
+    "marks",
+    "outOf",
+    "marksResult",
+    "Percentage"
+  );
+
+  // 7. Display a helpful message when there are no tasks.
+  const taskList = $("#taskList");
+
+  if (taskList && !taskList.children.length) {
+    const message = document.createElement("li");
+    message.textContent = "Your study tasks will appear here.";
+    message.className = "empty-task-message";
+    taskList.appendChild(message);
+  }
+
+})();
