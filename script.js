@@ -715,3 +715,106 @@ const sshArabicGradePlaylists = {
   }
 
 })();
+
+/* SAUDI STUDENT HUB — CLASS 11 BIOLOGY CHAPTER 1 */
+
+(function () {
+  const livingWorld = {
+    notes: [
+      ["Biology", "Biology is the scientific study of living organisms and their interactions with one another and with the environment."],
+      ["Biodiversity", "Biodiversity refers to the variety of living organisms present on Earth."],
+      ["Characteristics of living organisms", "Growth, reproduction, metabolism, cellular organisation and the ability to sense and respond to the environment are important characteristics of living organisms."],
+      ["Growth", "Growth is an increase in mass and an increase in the number of individuals or cells. In living organisms, growth occurs from inside."],
+      ["Reproduction", "Reproduction is the biological process by which organisms produce offspring. It may be sexual or asexual."],
+      ["Metabolism", "Metabolism is the sum total of all chemical reactions occurring in the body of an organism. It is a defining feature of living organisms."],
+      ["Cellular organisation", "All living organisms are made up of cells. The cell is the basic structural and functional unit of life."],
+      ["Consciousness", "Consciousness is the ability to sense the environment and respond to environmental stimuli."],
+      ["Taxonomy", "Taxonomy is the science of identifying, naming and classifying organisms."],
+      ["Systematics", "Systematics includes identification, nomenclature, classification and understanding evolutionary relationships."],
+      ["Binomial nomenclature", "Each organism is given a two-word scientific name: the first word is the genus and the second is the specific epithet."],
+      ["Rules of scientific naming", "Scientific names are generally Latin or Latinised. The genus begins with a capital letter and the specific epithet begins with a lowercase letter. Printed names are italicised."],
+      ["Taxonomic hierarchy", "The main taxonomic categories are species, genus, family, order, class, phylum or division, and kingdom."],
+      ["Species", "Species is the basic unit of classification. Members of a species generally share similarities and can naturally interbreed to produce fertile offspring."],
+      ["Taxonomical aids", "Herbaria, botanical gardens, museums, zoological parks and taxonomic keys help in the study and identification of organisms."]
+    ],
+    questions: [
+      ["What is biology?", "Biology is the scientific study of living organisms and their interactions."],
+      ["Define biodiversity.", "Biodiversity is the variety of living organisms found on Earth."],
+      ["What is metabolism?", "Metabolism is the sum total of all chemical reactions occurring in a living organism."],
+      ["Why is metabolism considered a defining feature of living organisms?", "Living organisms continuously perform metabolic reactions to maintain life. Metabolism is not independently shown by non-living objects."],
+      ["What is taxonomy?", "Taxonomy is the science of identification, nomenclature and classification of organisms."],
+      ["What is binomial nomenclature?", "It is the system of naming organisms using two words: genus and specific epithet."],
+      ["Write the correct scientific name format for humans.", "Homo sapiens. Homo begins with a capital letter and sapiens begins with a lowercase letter. Both words are italicised when printed."],
+      ["What is the basic unit of classification?", "Species is the basic unit of classification."],
+      ["Write the taxonomic hierarchy in correct order.", "Species → Genus → Family → Order → Class → Phylum/Division → Kingdom."],
+      ["Differentiate between taxonomy and systematics.", "Taxonomy deals with identification, naming and classification. Systematics also studies the diversity and evolutionary relationships among organisms."],
+      ["What is a taxonomic key?", "A taxonomic key is an identification tool based on contrasting characters, usually arranged in pairs of statements."],
+      ["Name four taxonomical aids.", "Herbaria, botanical gardens, museums and zoological parks."]
+    ]
+  };
+
+  const oldRenderTab = renderTab;
+
+  renderTab = function (isChem) {
+    if (isChem || activeChapter !== 0 ||
+        document.querySelector("#subjectSelect")?.value !== "Biology" ||
+        document.querySelector("#classSelect")?.value !== "11" ||
+        document.querySelector("#curriculum")?.value !== "CBSE") {
+      return oldRenderTab(isChem);
+    }
+
+    const el = document.querySelector("#tabContent");
+    if (!el) return;
+
+    if (activeTab === "notes") {
+      el.innerHTML = `
+        <div class="notes-grid">
+          ${livingWorld.notes.map((n, i) => `
+            <div class="note">
+              <b>${i + 1}. ${n[0]}</b>
+              <p>${n[1]}</p>
+            </div>
+          `).join("")}
+        </div>`;
+    } else if (
+      activeTab === "questions" ||
+      activeTab === "midterm" ||
+      activeTab === "final"
+    ) {
+      const heading =
+        activeTab === "midterm" ? "Midterm practice" :
+        activeTab === "final" ? "Final examination practice" :
+        "Important questions";
+
+      el.innerHTML = `
+        <div class="revision-banner">
+          <b>${heading} — The Living World</b>
+          <p>Attempt each question before revealing its answer. Revise the chapter notes after completing the practice.</p>
+        </div>
+        ${livingWorld.questions.map((q, i) => `
+          <div class="question">
+            <h4>${i + 1}. ${q[0]}</h4>
+            <button class="reveal" data-reveal="${i}">Show answer</button>
+            <div class="answer" id="answer${i}">${q[1]}</div>
+          </div>
+        `).join("")}`;
+      bindReveals();
+    } else if (activeTab === "videos") {
+      el.innerHTML = `
+        <div class="revision-banner">
+          <b>Chapter 1 video lessons</b>
+          <p>Verified chapter-specific video lessons will be added here. No unrelated or guessed video links are displayed.</p>
+        </div>`;
+    } else {
+      return oldRenderTab(isChem);
+    }
+  };
+
+  if (
+    document.querySelector("#subjectSelect")?.value === "Biology" &&
+    document.querySelector("#classSelect")?.value === "11" &&
+    document.querySelector("#curriculum")?.value === "CBSE"
+  ) {
+    renderChapters();
+  }
+})();
